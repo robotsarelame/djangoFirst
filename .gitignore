@@ -1,2 +1,6 @@
 .DS_Store
 first.db
+*.log
+*.pot
+*.pyc
+local_settings.py
