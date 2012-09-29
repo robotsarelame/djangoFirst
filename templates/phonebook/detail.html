@@ -1,0 +1,19 @@
+<h1>{{ person.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<!-- stub for simple output -->
+<ul>
+    <li>Phone: {{ person.phone }}</li>
+    <li>Email: {{ person.email }}</li>
+</ul>
+
+{% comment %}
+<form action="{% url 'phonebook.views.edit' person.id %}" method="post">
+{% csrf_token %}
+<Name: <input type="text" name="namefield" id="name{{ person.id}}" value="{{ person.name }}"/><br>>
+Phone: <input type="text" name="phonefield" id="phone{{ person.id }}" value="{{ person.phone }}"/><br>
+Email: <input type="text" name="emailfield" id="email{{ person.id }}" value="{{ person.email }}"/>
+<input type="submit" value="Update" />
+</form>
+{% endcomment %}
