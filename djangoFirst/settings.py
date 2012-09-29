@@ -155,7 +155,7 @@ LOGGING = {
 
 #here goes local_settings.py hack
 try:
-  import local_settings
+  from local_settings import *
 except ImportError:
   print """ 
     -------------------------------------------------------------------------
