@@ -1,0 +1,10 @@
+<form action = '{{ action }}' method='post'>
+	{% csrf_token %}
+	Name: 
+	<input name='person_name' value='{{ Person.name|escape }}'/><br>
+	Phone:
+	<input name='person_phone' value='{{ Person.phone|escape }}'/><br>
+	Email:
+	<input name='person_email' value='{{ Person.email|escape }}'/><br>	
+	<input type='submit' value='{{ button }}'>	
+</form>

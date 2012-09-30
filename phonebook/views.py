@@ -21,6 +21,17 @@ def list(request):
 def detail(request, person_id):
 	p = get_object_or_404(Person, pk=person_id)
 	return render_to_response('phonebook/detail.html', {'person': p}, context_instance=RequestContext(request))
+	
+def new(request):
+	return render_to_response('phonebook/contact_add_edit_form.html', {'action': 'add', 'button': 'Add'})
+	
+def add(request):
+	person_name = request.POST("person_name")
+	person_phone = request.POST("person_phone")
+	person_email = request.POST("person_email")
+	p = Person(name = person_name, phone = person_phone, email = person_email)
+	p.save()
+	return list(request)
 
 def edit(request, person_id):
 	p = get_object_or_404(Person, pk=person_id)
