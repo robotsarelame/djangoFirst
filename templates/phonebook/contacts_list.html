@@ -1,21 +1,10 @@
 {% if contacts %}
-
-	<!-- initial impl
-	{% comment %}
-    <ul>
-    {% for person in contacts %}
-        <li><a href="{% url 'phonebook.views.detail' person.id %}">{{ person.name|upper }}</a></li>
-    {% endfor %}
-    </ul>
-    {% endcomment %} 
-	-->
-	
 <table>
 	{% for person in contacts %}
 		<tr bgcolor='{% cycle FFFFFF, EEEEEE as rowcolor %}'>
 			<td><a href="{% url 'phonebook.views.detail' person.id %}">{{ person.name|upper }}</a></li></td>
-			<td><a href="#">Edit</a></li></td>
-			<td><a href="#">Delete</a></li></td>
+			<td><a href="{% url 'phonebook.views.edit' person.id %}">Edit</a></li></td>
+			<td><a href="{% url 'phonebook.views.delete' person.id %}">Delete</a></li></td>
 		</tr>
 	{% endfor %}
 </table>
@@ -28,7 +17,7 @@
         {% endif %}
 
         <span class="current">
-            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }} 
         </span>
 
         {% if contacts.has_next %}
@@ -42,4 +31,4 @@
     <p>Phonebook is empty</p>
 {% endif %}
 
-<p><a href="person/new">Add Contact</a></p>
+<p><a href="{% url 'phonebook.views.new' %}">Add Contact</a></p>

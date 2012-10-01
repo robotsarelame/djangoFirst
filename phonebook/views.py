@@ -35,6 +35,17 @@ def add(request):
 	return HttpResponseRedirect(reverse('phonebook.views.list'))
 
 def edit(request, person_id):
+	#p = Person.objects.get(pk=person_id)
+	return render_to_response('phonebook/contact_add_edit_form.html', {'action': 'index.html', 'button': 'Update'}, context_instance=RequestContext(request))
+
+def update(request, person_id):
 	p = get_object_or_404(Person, pk=person_id)
-	p.save()	
-	return HttpResponseRedirect(reverse('phonebbok.views.list'))
+	p.name = request.POST.get("person_name")
+	p.phone = request.POST.get("person_phone")
+	p.email = request.POST.get("person_email")
+	p.save()
+	return HttpResponseRedirect(reverse('phonebook.views.detail', args=(p.id,)))
+	
+def delete(request, person_id):
+	Person.objects.get(pk=person_id).delete()
+	return HttpResponseRedirect(reverse('phonebook.views.list'))
